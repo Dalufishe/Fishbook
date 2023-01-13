@@ -31,9 +31,9 @@ export default function Home() {
         justifyContent="space-between"
         alignItems="flex-start"
       >
-        <Sidebar flex={1} />
+        <Sidebar flex={1} sx={{ display: { xs: "none", sm: "block" } }} />
         <Feed flex={5} />
-        <Rightbar flex={1} />
+        <Rightbar flex={1} sx={{ display: { xs: "none", sm: "block" } }} />
       </StyledStack>
     </>
   );

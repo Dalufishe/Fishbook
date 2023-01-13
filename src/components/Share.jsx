@@ -62,6 +62,7 @@ function Share(props) {
       <Paper
         sx={{
           width: "35vw",
+          minWidth: { xs: "350px", sm: "560px" },
           borderRadius: 3,
           mt: 3,
         }}

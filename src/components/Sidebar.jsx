@@ -58,7 +58,10 @@ const UserBox = () => {
           src="https://avatars.githubusercontent.com/u/118270401?v=4"
         />
       </ListItemAvatar>
-      <ListItemText>Dalufishe</ListItemText>
+      <ListItemText
+      >
+        Dalufishe
+      </ListItemText>
     </ListItemButton>
   );
 };
@@ -81,6 +84,7 @@ function Sidebar(props) {
   return (
     <Box
       flex={props.flex}
+      sx={props.sx}
       height="calc(100vh - 64px)"
       position="sticky"
       top={0}
@@ -118,7 +122,10 @@ function Sidebar(props) {
         </List>
         <Typography
           color="text.secondary"
-          sx={{ fontSize: 13, cursor: "pointer" }}
+          sx={{
+            fontSize: 13,
+            cursor: "pointer",
+          }}
         >
           <Link color="inherit" underline="hover">
             隱私政策

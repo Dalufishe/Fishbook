@@ -73,7 +73,14 @@ function Post(props) {
       {props.posts.map((item) => {
         const { user, avatar, article, media } = item;
         return (
-          <Card key={Math.random()} sx={{ width: "35vw", borderRadius: 3 }}>
+          <Card
+            key={Math.random()}
+            sx={{
+              width: "35vw",
+              minWidth: { xs: "350px", sm: "560px" },
+              borderRadius: 3,
+            }}
+          >
             <CardContent>
               <Stack direction="row" alignItems="center">
                 <Avatar src={avatar} />

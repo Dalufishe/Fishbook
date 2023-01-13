@@ -41,7 +41,7 @@ export default function CreatePost(props) {
   const { handleModalClose } = props;
   return (
     <Paper elevation={3} sx={{ borderRadius: 5 }}>
-      <Box width={450} color="text.primary">
+      <Box width={{ xs: 350, sm: 450 }} color="text.primary">
         <CreatePostTop handleModalClose={handleModalClose} />
         <Divider />
         <CreatePostMain handleModalClose={handleModalClose} />

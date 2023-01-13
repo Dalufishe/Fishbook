@@ -108,6 +108,7 @@ export default function Rightbar(props) {
   return (
     <StyledBox
       flex={props.flex}
+      sx={props.sx}
       position="sticky"
       top={0}
       height="calc(100vh - 64px)"
