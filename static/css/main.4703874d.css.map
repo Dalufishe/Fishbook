@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.4703874d.css","mappings":"AAAA,KACI,YAAa,CACb,eACJ","sources":["app.css"],"sourcesContent":["body {\r\n    height: 100vh;\r\n    overflow: hidden;\r\n}"],"names":[],"sourceRoot":""}
