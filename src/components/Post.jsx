@@ -76,8 +76,7 @@ function Post(props) {
           <Card
             key={Math.random()}
             sx={{
-              width: "650px",
-              minWidth: { xs: "350px", sm: "560px" },
+              width: { xs: "350px", sm: "450px", md: "650px" },
               borderRadius: 3,
             }}
           >
