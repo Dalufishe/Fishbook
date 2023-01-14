@@ -17,6 +17,7 @@ import React, { useCallback, useState } from "react";
 
 import { connect } from "react-redux";
 import MoreSettingBar from "./MoreSettingBar";
+import UploadFilePlace from "./UploadFilePlace";
 
 const UserBox = styled(Box)({
   display: "flex",
@@ -49,6 +50,8 @@ function CreatePostMain(props) {
 
   const [article, setArticle] = useState("");
   const [media, setMedia] = useState(null);
+
+  const [UploadFilePlaceIsShow, setUploadFilePlaceIsShow] = useState(false);
 
   const handleSendPost = useCallback(() => {
     createPostAction(
@@ -84,7 +87,21 @@ function CreatePostMain(props) {
               setArticle(ev.currentTarget.value);
             }}
           />
-          <MoreSettingBar />
+          {UploadFilePlaceIsShow && (
+            <UploadFilePlace
+              setMedia={(media) => {
+                setMedia(media);
+              }}
+            />
+          )}
+          <MoreSettingBar
+            photoOnClick={() => {
+              setUploadFilePlaceIsShow(!UploadFilePlaceIsShow);
+            }}
+            liveOnClick={() => {}}
+            tagOnClick={() => {}}
+            moodOnClick={() => {}}
+          />
           <Sendbar onSend={handleSendPost} />
         </Box>
       </Stack>

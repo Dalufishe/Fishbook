@@ -76,7 +76,7 @@ function Post(props) {
           <Card
             key={Math.random()}
             sx={{
-              width: "35vw",
+              width: "650px",
               minWidth: { xs: "350px", sm: "560px" },
               borderRadius: 3,
             }}
@@ -106,9 +106,7 @@ function Post(props) {
                 {article}
               </Typography>
             </CardContent>
-            {media && (
-              <CardMedia component="img" alt="" height="140" image={media} />
-            )}
+            {media && <CardMedia component="img" image={media} />}
             <StyledCardActions
               sx={{
                 justifyContent: "space-between",
