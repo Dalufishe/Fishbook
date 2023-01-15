@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Fishbook/static/css/main.4703874d.css",
-    "main.js": "/Fishbook/static/js/main.72af1889.js",
+    "main.js": "/Fishbook/static/js/main.712b264c.js",
     "index.html": "/Fishbook/index.html",
     "main.4703874d.css.map": "/Fishbook/static/css/main.4703874d.css.map",
-    "main.72af1889.js.map": "/Fishbook/static/js/main.72af1889.js.map"
+    "main.712b264c.js.map": "/Fishbook/static/js/main.712b264c.js.map"
   },
   "entrypoints": [
     "static/css/main.4703874d.css",
-    "static/js/main.72af1889.js"
+    "static/js/main.712b264c.js"
   ]
 }
