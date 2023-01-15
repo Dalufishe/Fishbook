@@ -13,7 +13,6 @@ import {
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
 import { returnFileSize } from "../../../functions/returnFileSize";
-
 const StyledInnerBox = styled(Box)(({ theme }) => ({
   width: "100%",
   borderRadius: "10px",
@@ -44,11 +43,10 @@ const StyledOuterBox = styled(Box)(({ theme }) => ({
 
 export default function UploadFilePlace(props) {
   const inputRef = useRef();
-
   //* this is File Object (Blob)
   const [file, setFile] = useState("");
   //* this is Image Url
-  const [image, setImage] = useState("");
+  const [uploadMedia, setUploadMedia] = useState("");
 
   const handleInputFile = useCallback((ev) => {
     const uploadFile = ev.currentTarget.files[0];
@@ -56,7 +54,7 @@ export default function UploadFilePlace(props) {
       setFile(uploadFile);
       const reader = new FileReader();
       reader.onload = function (ev) {
-        setImage(ev.target.result);
+        setUploadMedia(ev.target.result);
         props.setMedia(ev.target.result);
       };
       reader.readAsDataURL(uploadFile);
@@ -77,7 +75,7 @@ export default function UploadFilePlace(props) {
               m: "0 auto",
               width: "100%",
               justifyContent: "center",
-              alignItems: image ? "flex-start" : "center",
+              alignItems: uploadMedia ? "flex-start" : "center",
             }}
             control={
               <Input
@@ -88,9 +86,9 @@ export default function UploadFilePlace(props) {
               />
             }
             label={
-              image ? (
+              uploadMedia ? (
                 <Card sx={{ width: "100%" }}>
-                  <CardMedia component="img" image={image} />
+                  <CardMedia component="img" image={uploadMedia} />
                   <CardContent>
                     <Typography sx={{ wordBreak: "break-all" }}>
                       {file.name}

@@ -2,35 +2,25 @@ import {
   Box,
   Typography,
   styled,
-  TextField,
   Avatar,
   Stack,
   Button,
   ButtonGroup,
 } from "@mui/material";
-
 import { createPostAction } from "../../../redux/actions/createPostAction";
 import { UploadFilePlaceIsShowAction } from "../../../redux/actions/UploadFilePlaceIsShowAction";
-
 import DateRangeIcon from "@mui/icons-material/DateRange";
-
 import React, { useCallback, useState } from "react";
-
 import { connect } from "react-redux";
-
 import MoreSettingBar from "./MoreSettingBar";
 import UploadFilePlace from "./UploadFilePlace";
+import ArticlePart from "./ArticlePart";
 
 const UserBox = styled(Box)({
   display: "flex",
   alignItems: "center",
   gap: "10px",
   marginTop: "8px",
-  marginBottom: "16px",
-});
-
-const StyledTextField = styled(TextField)({
-  width: "100%",
   marginBottom: "16px",
 });
 
@@ -51,7 +41,6 @@ function CreatePostMain(props) {
   const {
     handleModalClose,
     createPostAction,
-    UploadFilePlaceIsShowAction,
     UploadFilePlaceIsShow,
   } = props;
 
@@ -81,17 +70,7 @@ function CreatePostMain(props) {
       </UserBox>
       <Stack direction="row" justifyContent="center">
         <Box width="95%">
-          <StyledTextField
-            autoFocus
-            rows={6}
-            placeholder="你在想什麼？"
-            multiline
-            variant="standard"
-            value={article}
-            onChange={(ev) => {
-              setArticle(ev.currentTarget.value);
-            }}
-          />
+          <ArticlePart article={article} setArticle={setArticle} />
           {UploadFilePlaceIsShow && (
             <UploadFilePlace
               setMedia={(media) => {
@@ -99,14 +78,7 @@ function CreatePostMain(props) {
               }}
             />
           )}
-          <MoreSettingBar
-            photoOnClick={() => {
-              UploadFilePlaceIsShowAction(!UploadFilePlaceIsShow);
-            }}
-            liveOnClick={() => {}}
-            tagOnClick={() => {}}
-            moodOnClick={() => {}}
-          />
+          <MoreSettingBar/>
           <Sendbar onSend={handleSendPost} />
         </Box>
       </Stack>
@@ -120,10 +92,7 @@ const mapStateToProps = (state) => {
       state.UploadFilePlaceIsShowState.UploadFilePlaceIsShow,
   };
 };
-
 const mapDispatchToProps = {
   createPostAction,
-  UploadFilePlaceIsShowAction,
 };
-
 export default connect(mapStateToProps, mapDispatchToProps)(CreatePostMain);
