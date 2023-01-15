@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { styled, Box, InputBase, Paper } from "@mui/material";
+import React from "react";
+import {  InputBase } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import Hoverbar from "./Hoverbar";
 
@@ -24,7 +24,7 @@ export default function Searchbar(props) {
         autoFocus
         sx={{
           pl: 1,
-          width: { xs: 0, sm: "35vw", md: "40vw" },
+          width: { xs: "35vw", sm: "35vw", md: "40vw" },
         }}
         placeholder="搜尋 Fishbook"
       />

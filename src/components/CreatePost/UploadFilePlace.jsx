@@ -1,9 +1,9 @@
 import {
   Box,
   Card,
+  CardContent,
   CardMedia,
   FormControlLabel,
-  IconButton,
   Input,
   Paper,
   Stack,
@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
+import { returnFileSize } from "../../functions/returnFileSize";
 
 const StyledInnerBox = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -19,13 +20,15 @@ const StyledInnerBox = styled(Box)(({ theme }) => ({
   minHeight: "150px",
   maxHeight: "450px",
   overflowY: "auto",
+  "&::-webkit-scrollbar": {
+    display: "none",
+  },
   backgroundColor: theme.palette.action.hover,
   "&:hover": {
     backgroundColor: theme.palette.action.disabledBackground,
   },
   display: "flex",
   justifyContent: "center",
-  alignItems: "center",
 }));
 
 const StyledOuterBox = styled(Box)(({ theme }) => ({
@@ -42,16 +45,22 @@ const StyledOuterBox = styled(Box)(({ theme }) => ({
 export default function UploadFilePlace(props) {
   const inputRef = useRef();
 
+  //* this is File Object (Blob)
+  const [file, setFile] = useState("");
+  //* this is Image Url
   const [image, setImage] = useState("");
 
   const handleInputFile = useCallback((ev) => {
     const uploadFile = ev.currentTarget.files[0];
-    const reader = new FileReader();
-    reader.onload = function (ev) {
-      setImage(ev.target.result);
-      props.setMedia(ev.target.result);
-    };
-    reader.readAsDataURL(uploadFile);
+    if (uploadFile) {
+      setFile(uploadFile);
+      const reader = new FileReader();
+      reader.onload = function (ev) {
+        setImage(ev.target.result);
+        props.setMedia(ev.target.result);
+      };
+      reader.readAsDataURL(uploadFile);
+    }
   });
 
   useEffect(() => {
@@ -59,52 +68,64 @@ export default function UploadFilePlace(props) {
   });
 
   return (
-    <StyledOuterBox>
-      <StyledInnerBox>
-        <FormControlLabel
-          sx={{
-            m: "0 auto",
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            justifyContent: "center",
-          }}
-          control={
-            <Input
-              type="file"
-              inputRef={inputRef}
-              sx={{ display: "none" }}
-              onChange={handleInputFile}
-            />
-          }
-          label={
-            image ? (
-              <Card>
-                <CardMedia component="img" image={image} />
-              </Card>
-            ) : (
-              <>
-                <Stack alignItems="center" spacing={1}>
-                  <Box
-                    sx={{
-                      width: "40px",
-                      height: "40px",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      borderRadius: "50%",
-                      backgroundColor: "action.disabledBackground",
-                    }}
-                  >
-                    <PhotoLibraryIcon />
-                  </Box>
-                  <Typography>新增相片 / 影片</Typography>
-                </Stack>
-              </>
-            )
-          }
-        />
-      </StyledInnerBox>
-    </StyledOuterBox>
+    <>
+      <StyledOuterBox>
+        <StyledInnerBox>
+          <FormControlLabel
+            sx={{
+              m: "0 auto",
+              width: "100%",
+              justifyContent: "center",
+              alignItems: image ? "flex-start" : "center",
+            }}
+            control={
+              <Input
+                type="file"
+                inputRef={inputRef}
+                sx={{ display: "none" }}
+                onChange={handleInputFile}
+              />
+            }
+            label={
+              image ? (
+                <Card sx={{ width: 350 }}>
+                  <CardMedia component="img" image={image} />
+                  <CardContent>
+                    <Typography sx={{ wordBreak: "break-all" }}>
+                      {file.name}
+                    </Typography>
+                    <Typography color="text.secondary">
+                      {returnFileSize(file.size)}
+                    </Typography>
+                    <Typography color="text.secondary">
+                      {file.type.replace(/image\//gu, "")} 檔案
+                    </Typography>
+                  </CardContent>
+                </Card>
+              ) : (
+                <>
+                  <Stack alignItems="center" spacing={1}>
+                    <Box
+                      sx={{
+                        width: "40px",
+                        height: "40px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRadius: "50%",
+                        backgroundColor: "action.disabledBackground",
+                      }}
+                    >
+                      <PhotoLibraryIcon />
+                    </Box>
+                    <Typography>新增相片 / 影片</Typography>
+                  </Stack>
+                </>
+              )
+            }
+          />
+        </StyledInnerBox>
+      </StyledOuterBox>
+    </>
   );
 }

@@ -2,7 +2,6 @@ import {
   Box,
   Divider,
   List,
-  ListItem,
   ListItemAvatar,
   ListItemButton,
   ListItemIcon,
@@ -19,16 +18,14 @@ import ArticleIcon from "@mui/icons-material/Article";
 import GroupIcon from "@mui/icons-material/Group";
 import StorefrontIcon from "@mui/icons-material/Storefront";
 import PersonIcon from "@mui/icons-material/Person";
-import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LiveTvIcon from "@mui/icons-material/LiveTv";
 import ModeNightIcon from "@mui/icons-material/ModeNight";
 import LightModeIcon from "@mui/icons-material/LightMode";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import styled from "@emotion/styled";
 import { connect } from "react-redux";
-import { store } from "../redux/store";
 
 const StyledListItemButton = styled(ListItemButton)(({ theme }) => ({
   marginBottom: "8px",
@@ -58,10 +55,7 @@ const UserBox = () => {
           src="https://avatars.githubusercontent.com/u/118270401?v=4"
         />
       </ListItemAvatar>
-      <ListItemText
-      >
-        Dalufishe
-      </ListItemText>
+      <ListItemText>Dalufishe</ListItemText>
     </ListItemButton>
   );
 };
@@ -76,7 +70,6 @@ function Sidebar(props) {
     { text: "商店", icon: <StorefrontIcon /> },
     { text: "朋友", icon: <PersonIcon /> },
     { text: "群組", icon: <GroupIcon /> },
-    { text: "個人", icon: <AccountBoxIcon /> },
     { text: "設置", icon: <SettingsIcon /> },
   ]);
   const [selectIndex, setSelectIndex] = useState(0);

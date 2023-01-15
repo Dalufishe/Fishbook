@@ -7,15 +7,17 @@ import {
   Stack,
   Button,
   ButtonGroup,
-  IconButton,
-  Tooltip,
 } from "@mui/material";
 
 import { createPostAction } from "../../redux/actions/createPostAction";
+import { UploadFilePlaceIsShowAction } from "../../redux/actions/UploadFilePlaceIsShowAction";
+
 import DateRangeIcon from "@mui/icons-material/DateRange";
+
 import React, { useCallback, useState } from "react";
 
 import { connect } from "react-redux";
+
 import MoreSettingBar from "./MoreSettingBar";
 import UploadFilePlace from "./UploadFilePlace";
 
@@ -46,12 +48,15 @@ const Sendbar = (props) => {
 };
 
 function CreatePostMain(props) {
-  const { handleModalClose, createPostAction } = props;
+  const {
+    handleModalClose,
+    createPostAction,
+    UploadFilePlaceIsShowAction,
+    UploadFilePlaceIsShow,
+  } = props;
 
   const [article, setArticle] = useState("");
   const [media, setMedia] = useState(null);
-
-  const [UploadFilePlaceIsShow, setUploadFilePlaceIsShow] = useState(false);
 
   const handleSendPost = useCallback(() => {
     createPostAction(
@@ -96,7 +101,7 @@ function CreatePostMain(props) {
           )}
           <MoreSettingBar
             photoOnClick={() => {
-              setUploadFilePlaceIsShow(!UploadFilePlaceIsShow);
+              UploadFilePlaceIsShowAction(!UploadFilePlaceIsShow);
             }}
             liveOnClick={() => {}}
             tagOnClick={() => {}}
@@ -109,8 +114,16 @@ function CreatePostMain(props) {
   );
 }
 
-const mapDispatchToProps = {
-  createPostAction,
+const mapStateToProps = (state) => {
+  return {
+    UploadFilePlaceIsShow:
+      state.UploadFilePlaceIsShowState.UploadFilePlaceIsShow,
+  };
 };
 
-export default connect(null, mapDispatchToProps)(CreatePostMain);
+const mapDispatchToProps = {
+  createPostAction,
+  UploadFilePlaceIsShowAction,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreatePostMain);

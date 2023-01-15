@@ -1,6 +1,5 @@
 import {
   Card,
-  Paper,
   CardMedia,
   CardContent,
   Typography,
@@ -14,7 +13,6 @@ import {
 import React, { useCallback, useState } from "react";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
-import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import ShareIcon from "@mui/icons-material/Share";
 import { Box } from "@mui/system";

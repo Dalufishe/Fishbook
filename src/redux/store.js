@@ -4,10 +4,12 @@ import storage from 'redux-persist/lib/storage'
 
 import { createPostReducer } from "./reducers/createPostReducer";
 import { darkModeReducer } from "./reducers/darkModeReducer"
+import { UploadFilePlaceIsShowReducer } from "./reducers/UploadFilePlaceIsShowReducer";
 
 const reducer = combineReducers({
     darkModeState: darkModeReducer,
     createPostState: createPostReducer,
+    UploadFilePlaceIsShowState: UploadFilePlaceIsShowReducer
 });
 
 const persistConfig = {

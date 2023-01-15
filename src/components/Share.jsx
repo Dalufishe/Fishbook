@@ -14,11 +14,12 @@ import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
 import LabelIcon from "@mui/icons-material/Label";
 import MoodIcon from "@mui/icons-material/Mood";
 
-import React, { useCallback, useEffect, useState } from "react";
-import { Box } from "@mui/system";
+import React, { useCallback,  useState } from "react";
 import CreatePost from "./CreatePost/CreatePost";
 import { connect } from "react-redux";
 import Hoverbar from "./Hoverbar";
+
+import { UploadFilePlaceIsShowAction } from "../redux/actions/UploadFilePlaceIsShowAction";
 
 const StyledListItemButton = styled(ListItemButton)(({ theme }) => ({
   display: "flex",
@@ -47,9 +48,8 @@ const CreatePostBar = (props) => {
 };
 
 function Share(props) {
-  const { mode } = props;
+  const { mode, UploadFilePlaceIsShowAction } = props;
   const [modalOpen, setModalOpen] = useState(false);
-  // ~ elevation
 
   const handleCreatePostBarClick = useCallback(() => {
     setModalOpen(true);
@@ -57,6 +57,13 @@ function Share(props) {
   const handleModalClose = useCallback(() => {
     setModalOpen(false);
   });
+  const handlePhotoButtonClick = () => {
+    handleCreatePostBarClick();
+    UploadFilePlaceIsShowAction(true);
+  };
+  const handleTagButtonClick = () => {};
+  const handleMoodButtonClick = () => {};
+
   return (
     <>
       <Paper
@@ -83,15 +90,15 @@ function Share(props) {
               justifyContent="space-around"
               alignItems="center"
             >
-              <StyledListItemButton>
+              <StyledListItemButton onClick={handlePhotoButtonClick}>
                 <PhotoLibraryIcon color="success" />
                 <StyledTypography>照片 / 影片</StyledTypography>
               </StyledListItemButton>
-              <StyledListItemButton>
+              <StyledListItemButton onClick={handleTagButtonClick}>
                 <LabelIcon color="info" />
                 <StyledTypography>標籤 / 地點</StyledTypography>
               </StyledListItemButton>
-              <StyledListItemButton>
+              <StyledListItemButton onClick={handleMoodButtonClick}>
                 <MoodIcon color="warning" />
                 <StyledTypography>感受 / 心情</StyledTypography>
               </StyledListItemButton>
@@ -114,4 +121,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Share);
+const mapDispatchToProps = {
+  UploadFilePlaceIsShowAction,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Share);

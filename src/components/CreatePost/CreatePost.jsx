@@ -6,9 +6,10 @@ import {
   Paper,
   IconButton,
 } from "@mui/material";
-
 import ClearIcon from "@mui/icons-material/Clear";
+
 import React from "react";
+
 import CreatePostMain from "./CreatePostMain";
 
 const StyledDeleteButton = styled(IconButton)(({ theme }) => ({

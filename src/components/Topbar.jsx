@@ -3,7 +3,6 @@ import {
   Toolbar,
   Typography,
   Box,
-  InputBase,
   styled,
   css,
   IconButton,
@@ -11,7 +10,7 @@ import {
   Badge,
   Avatar,
 } from "@mui/material";
-import { Chat, Notifications, Person, Search } from "@mui/icons-material";
+import { Chat, Notifications, Person} from "@mui/icons-material";
 
 import React from "react";
 
@@ -86,7 +85,12 @@ function Topbar(props) {
           gap={2}
           justifyContent="flex-end"
         >
-          <Stack aria-label="topbar-icons" direction="row" gap={1}>
+          <Stack
+            aria-label="topbar-icons"
+            display={{ xs: "none", sm: "flex" }}
+            direction="row"
+            gap={1}
+          >
             <Icon badge={4}>
               <Person />
             </Icon>

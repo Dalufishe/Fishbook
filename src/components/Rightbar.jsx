@@ -12,18 +12,10 @@ import {
   styled,
   Typography,
   Box,
-  css,
 } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { faker } from "@faker-js/faker";
-const createRandomUser = () => {
-  return {
-    _id: faker.datatype.uuid(),
-    avatar: faker.image.avatar(),
-    name: faker.name.firstName(),
-  };
-};
+import { createRandomUser } from "../functions/createRandomUser";
 
 const StyledTypography = styled(Typography)(({ theme }) => ({
   fontWeight: 700,
@@ -77,11 +69,7 @@ const ContactList = () => {
   const [contactData, setContactData] = useState([]);
 
   useEffect(() => {
-    const fakeData = [];
-    for (let i = 0; i < 20; i++) {
-      fakeData.push(createRandomUser());
-    }
-    setContactData(fakeData);
+    setContactData(createRandomUser(20));
   }, []);
 
   return (
