@@ -9,8 +9,8 @@ import {
   ButtonGroup,
 } from "@mui/material";
 
-import { createPostAction } from "../../redux/actions/createPostAction";
-import { UploadFilePlaceIsShowAction } from "../../redux/actions/UploadFilePlaceIsShowAction";
+import { createPostAction } from "../../../redux/actions/createPostAction";
+import { UploadFilePlaceIsShowAction } from "../../../redux/actions/UploadFilePlaceIsShowAction";
 
 import DateRangeIcon from "@mui/icons-material/DateRange";
 

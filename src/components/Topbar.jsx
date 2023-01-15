@@ -26,6 +26,7 @@ const StyledToolbar = styled(Toolbar)(css`
   justify-content: space-between;
   align-items: center;
   height: 64px;
+  gap: 16px;
 `);
 
 const Icon = (props) => {
@@ -75,7 +76,6 @@ function Topbar(props) {
           aria-label="topbar-center"
           flex={5}
           justifyContent="flex-start"
-          sx={{ ml: 2 }}
         >
           <Searchbar mode={mode} />
         </StyledBox>

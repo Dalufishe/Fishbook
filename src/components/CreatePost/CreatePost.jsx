@@ -1,52 +1,39 @@
-import {
-  Box,
-  Typography,
-  styled,
-  Divider,
-  Paper,
-  IconButton,
-} from "@mui/material";
-import ClearIcon from "@mui/icons-material/Clear";
+import { Box, Divider, Paper, styled } from "@mui/material";
 
 import React from "react";
 
-import CreatePostMain from "./CreatePostMain";
+import CreatePostMain from "./CreatePostMain/CreatePostMain";
+import CreatePostTop from "./CreatePostTop";
 
-const StyledDeleteButton = styled(IconButton)(({ theme }) => ({
-  position: "absolute",
-  top: 12,
-  right: 16,
-  backgroundColor: theme.palette.action.hover,
+const StyledBox = styled(Box)(({ theme }) => ({
+  color: theme.palette.text.primary,
+  maxHeight: "95vh",
+  overflow: "auto",
+  "&::-webkit-scrollbar": {
+    width: "16px",
+  },
+  "&::-webkit-scrollbar-track": {
+    backgroundColor: theme.palette.background.default,
+  },
+  "&::-webkit-scrollbar-thumb": {
+    backgroundColor: theme.palette.text.disabled,
+    borderRadius: 10,
+    border: `4px solid ${theme.palette.background.default}`,
+  },
+  "&::-webkit-scrollbar-thumb:hover": {
+    backgroundColor: theme.palette.text.secondary,
+  },
 }));
-
-const CreatePostTop = (props) => {
-  return (
-    <Box p={4} pt={2} pb={2} position="relative">
-      <Typography
-        variant="h6"
-        color="text.secondary"
-        component="h2"
-        textAlign="center"
-        fontWeight={600}
-      >
-        建立貼文
-      </Typography>
-      <StyledDeleteButton onClick={props.handleModalClose}>
-        <ClearIcon />
-      </StyledDeleteButton>
-    </Box>
-  );
-};
 
 export default function CreatePost(props) {
   const { handleModalClose } = props;
   return (
     <Paper elevation={3} sx={{ borderRadius: 5 }}>
-      <Box width={{ xs: 350, sm: 450 }} color="text.primary">
+      <StyledBox width={{ xs: 350, sm: 450 }}>
         <CreatePostTop handleModalClose={handleModalClose} />
         <Divider />
         <CreatePostMain handleModalClose={handleModalClose} />
-      </Box>
+      </StyledBox>
     </Paper>
   );
 }

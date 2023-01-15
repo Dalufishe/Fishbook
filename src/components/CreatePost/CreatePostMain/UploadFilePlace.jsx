@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
-import { returnFileSize } from "../../functions/returnFileSize";
+import { returnFileSize } from "../../../functions/returnFileSize";
 
 const StyledInnerBox = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -72,6 +72,7 @@ export default function UploadFilePlace(props) {
       <StyledOuterBox>
         <StyledInnerBox>
           <FormControlLabel
+            disableTypography
             sx={{
               m: "0 auto",
               width: "100%",
@@ -88,7 +89,7 @@ export default function UploadFilePlace(props) {
             }
             label={
               image ? (
-                <Card sx={{ width: 350 }}>
+                <Card sx={{ width: "100%" }}>
                   <CardMedia component="img" image={image} />
                   <CardContent>
                     <Typography sx={{ wordBreak: "break-all" }}>
